@@ -1,0 +1,35 @@
+:host ::ng-deep .p-button {
+  margin-left: 0.5rem;
+}
+.p-error {
+  color: red;
+  font-size: 0.85rem;
+  height: 1.2rem; /* Giữ chiều cao cố định */
+  margin-top: 0.25rem;
+  transition: opacity 0.3s ease;
+
+}
+.field {
+  margin-bottom: 1rem;
+}
+
+.field label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.card {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 1px 3px 0 rgba(0,0,0,0.12);
+}
+
+/* Add this if you want to align the labels and inputs */
+@media screen and (min-width: 768px) {
+  .formgrid.grid {
+    align-items: center;
+  }
+}
