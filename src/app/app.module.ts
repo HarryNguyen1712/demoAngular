@@ -14,13 +14,19 @@ import {ButtonDirective} from "primeng/button";
 import {PasswordModule} from "primeng/password";
 import {ButtonModule} from "primeng/button";
 import {CalendarModule} from "primeng/calendar";
+import {AddUpdateComponent} from "./addUpdateUser/addUpdateUser.component";
+import {DropdownModule} from "primeng/dropdown";
+import {UpdateUserDialogComponent} from "./updateuserdialog/updateUserDialog.component";
+import {DialogModule} from "primeng/dialog";
+import {DeleteUserComponent} from "./deleteUser/deleteUser.component";
+import {CardModule} from "primeng/card";
 @NgModule({
-  declarations: [AppComponent, InquiryComponent],
+  declarations: [AppComponent, InquiryComponent, AddUpdateComponent, UpdateUserDialogComponent, DeleteUserComponent],
   imports: [BrowserModule,
     TableModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    AppRoutingModule, InputGroupModule, InputGroupAddonModule, InputTextModule, MessageModule, ButtonModule, PasswordModule, CalendarModule],
+    AppRoutingModule, InputGroupModule, InputGroupAddonModule, InputTextModule, MessageModule, ButtonModule, PasswordModule, CalendarModule, DropdownModule, DialogModule, CardModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })

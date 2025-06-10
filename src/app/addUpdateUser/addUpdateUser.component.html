@@ -1,0 +1,59 @@
+<p-card>
+  <ng-template pTemplate="header">
+    <div class="custom-header">
+      <span class="header-icon pi pi-user"></span>
+      <span class="header-title">Tạo User</span>
+    </div>
+  </ng-template>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-card-body">
+
+
+    <div class="field col-12 md:col-4">
+      <label for="name" class="block">Họ tên</label>
+      <input id="name" type="text" pInputText formControlName="name" class="w-full" [ngClass]="{ 'ng-invalid ng-dirty': form.controls['name'].touched && form.controls['name'].invalid }"  />
+      <!--<small *ngIf="form.controls['name'].touched && form.controls['name'].invalid" class="p-error">Vui lòng nhập họ tên.</small>-->
+    </div>
+
+
+    <div class="field col-12 md:col-4">
+      <label for="age" class="block">Tuổi</label>
+      <input id="age" type="number" pInputText formControlName="age" class="w-full" [ngClass]="{'ng-invalid ng-dirty':form.controls['age'].touched && form.controls['age'].invalid}"  />
+      <!-- <small *ngIf="form.controls['age'].touched && form.controls['age'].invalid" class="p-error">Vui lòng nhập tuổi.</small>-->
+    </div>
+
+
+    <div class="field col-12 md:col-4">
+      <label for="address" class="block">Địa chỉ</label>
+      <input id="address" type="text" pInputText formControlName="address" class="w-full"  [ngClass]="{'ng-invalid ng-dirty':form.controls['address'].touched && form.controls['address'].invalid}"  />
+      <!-- <small *ngIf="form.controls['address'].touched && form.controls['address'].invalid" class="p-error">Vui lòng nhập địa chỉ.</small>-->
+    </div>
+
+
+    <!-- Second Row - 2 inputs + submit button -->
+
+    <div class="field col-12 md:col-4">
+      <label for="company" class="block">Công ty</label>
+      <p-dropdown
+        [options]="companyEnum"
+        formControlName="company"
+        id="company"
+        [ngClass]="{'ng-invalid ng-dirty':form.controls['company'].touched && form.controls['company'].invalid}"
+        placeholder="Công ty" />
+      <!-- <small *ngIf="form.controls['address'].touched && form.controls['address'].invalid" class="p-error">Vui lòng nhập địa chỉ.</small>-->
+    </div>
+
+
+    <div class="field col-12 md:col-4">
+      <label for="birthDate" class="block">Ngày sinh</label>
+      <p-calendar  [dateFormat]="'dd/mm/yy'" inputId="birthDate" showIcon="true" formControlName="birthDate" [ngClass]="{'ng-invalid ng-dirty':form.controls['birthDate'].touched && form.controls['birthDate'].invalid}"></p-calendar>
+      <!--<small *ngIf="form.controls['birthDate'].touched && form.controls['birthDate'].invalid" class="p-error">Vui lòng nhập ngày sinh.</small>-->
+    </div>
+
+
+    <div class="field col-12 md:col-4 flex align-items-end">
+      <button pButton type="submit" label="Đăng ký" class="p-button-success w-full"></button>
+    </div>
+
+  </form>
+</p-card>
+

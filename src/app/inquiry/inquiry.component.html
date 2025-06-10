@@ -1,73 +1,93 @@
-<div class="content-section introduction">
-  <div class="feature-intro">
-    <h1>Inquiry</h1>
-    <p>Inquiry</p>
+<ng-container>
+  <div class="p-card" id="table-user">
+    <form [formGroup]="formSearch" (ngSubmit)="onSubmitSearch()" class="p-card-body">
+
+      <div class="formgrid grid">
+
+        <div class="field col-12 md:col-4">
+          <input id="nameSearch" type="text" placeholder="Họ và tên" pInputText formControlName="nameSearch"
+                 class="w-full"
+                 [ngClass]="{ 'ng-invalid ng-dirty': formSearch.controls['nameSearch'].touched && formSearch.controls['nameSearch'].invalid }"/>
+          <!--<small *ngIf="form.controls['name'].touched && form.controls['name'].invalid" class="p-error">Vui lòng nhập họ tên.</small>-->
+        </div>
+
+
+        <!-- Submit button -->
+        <div class="field col-12 md:col-4 flex align-items-end">
+          <button pButton type="submit" label="Tìm Kiếm" class="p-button w-full"></button>
+
+        </div>
+        <div class="field col-12 md:col-4 flex align-items-end">
+          <button pButton type="button" label="Thêm User" class="p-button w-full" (click)="goToLink()"></button>
+
+        </div>
+      </div>
+    </form>
   </div>
-</div>
 
-<div class="card">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <!-- First Row - 3 inputs -->
-    <div class="formgrid grid">
-      <!-- Name field -->
-      <div class="field col-12 md:col-4">
-        <label for="name" class="block">Họ tên</label>
-        <input id="name" type="text" pInputText formControlName="name" class="w-full" [ngClass]="{ 'ng-invalid ng-dirty': form.controls['name'].touched && form.controls['name'].invalid }"  />
-        <!--<small *ngIf="form.controls['name'].touched && form.controls['name'].invalid" class="p-error">Vui lòng nhập họ tên.</small>-->
+  <ng-container *ngIf="isLoaded">
+    <div class="p-card">
+      <div class="p-card-body p-table-wrapper">
+        <p-table class="rounded-table" [value]="users" [paginator]="true" [rows]="10"
+                 [tableStyle]="{ 'min-width': '50rem' }"
+                 [scrollable]="true" scrollHeight="400px">
+          <ng-template pTemplate="colgroup">
+            <colgroup>
+              <col style="min-width: 200px"/>
+              <col style="min-width: 300px"/>
+              <col style="min-width: 100px"/>
+              <col style="min-width: 300px"/>
+              <col style="min-width: 300px"/>
+              <col style="min-width: 100px"/>
+              <col style="min-width: 300px"/>
+            </colgroup>
+          </ng-template>
+
+          <ng-template pTemplate="header">
+            <tr class="table-header">
+              <th pFrozenColumn>CCCD</th>
+              <th>Họ tên</th>
+              <th>Tuổi</th>
+              <th>Địa chỉ</th>
+              <th>Công ty</th>
+              <th>Ngày sinh</th>
+              <th pFrozenColumn alignFrozen="right">Thao tác</th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-user>
+            <tr>
+              <td pFrozenColumn>{{ user.id }}</td>
+              <td>{{ user.name }}</td>
+              <td>{{ user.age }}</td>
+              <td>{{ user.address }}</td>
+              <td>{{ user.company }}</td>
+              <td>{{ user.birthDate }}</td>
+              <td pFrozenColumn alignFrozen="right">
+                <button pButton type="button" label="Chỉnh sửa" icon="pi pi-file-edit"
+                        (click)="openDialog(user.id)"></button>
+                <button pButton type="button" label="Xoá" icon="pi pi-delete-left" class="p-button-danger"
+                        (click)="openDialogDelete(user.id)"></button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
       </div>
 
-      <!-- Age field -->
-      <div class="field col-12 md:col-4">
-        <label for="age" class="block">Tuổi</label>
-        <input id="age" type="number" pInputText formControlName="age" class="w-full" [ngClass]="{'ng-invalid ng-dirty':form.controls['age'].touched && form.controls['age'].invalid}"  />
-       <!-- <small *ngIf="form.controls['age'].touched && form.controls['age'].invalid" class="p-error">Vui lòng nhập tuổi.</small>-->
-      </div>
-
-      <!-- Address field -->
-      <div class="field col-12 md:col-4">
-        <label for="address" class="block">Địa chỉ</label>
-        <input id="address" type="text" pInputText formControlName="address" class="w-full"  [ngClass]="{'ng-invalid ng-dirty':form.controls['address'].touched && form.controls['address'].invalid}"  />
-       <!-- <small *ngIf="form.controls['address'].touched && form.controls['address'].invalid" class="p-error">Vui lòng nhập địa chỉ.</small>-->
-      </div>
     </div>
+  </ng-container>
 
-    <!-- Second Row - 2 inputs + submit button -->
-    <div class="formgrid grid">
-      <!-- Company field -->
-      <div class="field col-12 md:col-4">
-        <label for="company" class="block">Công ty</label>
-        <input id="company" type="text" pInputText formControlName="company" class="w-full" [ngClass]="{'ng-invalid ng-dirty':form.controls['company'].touched && form.controls['company'].invalid}" />
-        <!--<small *ngIf="form.controls['company'].touched && form.controls['company'].invalid" class="p-error">Vui lòng nhập công ty.</small>-->
-      </div>
+</ng-container>
 
-      <!-- Birth Date field -->
-      <div class="field col-12 md:col-4">
-        <label for="birthDate" class="block">Ngày sinh</label>
-        <p-calendar formControlName="birthDate" [showIcon]="true" [ngClass]="{'ng-invalid ng-dirty':form.controls['birthDate'].touched && form.controls['birthDate'].invalid}"></p-calendar>
-        <!--<small *ngIf="form.controls['birthDate'].touched && form.controls['birthDate'].invalid" class="p-error">Vui lòng nhập ngày sinh.</small>-->
-      </div>
-
-      <!-- Submit button -->
-      <div class="field col-12 md:col-4 flex align-items-end">
-        <button pButton type="submit" label="Đăng ký" class="p-button-success w-full"></button>
-      </div>
-    </div>
-  </form>
-</div>
-<p-table [value]="users" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }" >
-  <ng-template pTemplate="header">
-    <tr>
-      <th>ID</th>
-      <th>Họ tên</th>
-      <th>Email</th>
-    </tr>
-  </ng-template>
-
-  <ng-template pTemplate="body" let-user>
-    <tr>
-      <td>{{ user.id }}</td>
-      <td>{{ user.name }}</td>
-      <td>{{ user.email }}</td>
-    </tr>
-  </ng-template>
-</p-table>
+<update-user-dialog
+  [(visible)]="displayDialog"
+  [user]="selectedUser"
+  (save)="saveUser($event)"
+>
+</update-user-dialog>
+<delete
+  [(visible)]="displayDialogDelete"
+  [id]="selectedId"
+  (delete)="deleteUser($event)"
+  (cancel)="cancel()">
+</delete>

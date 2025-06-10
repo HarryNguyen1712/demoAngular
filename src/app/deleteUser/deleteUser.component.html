@@ -1,0 +1,11 @@
+<p-dialog header="Xoá User" [(visible)]="visible" [style]="{width: '25rem'}" (onHide)="hideDialog()">
+  <div>Bạn có muốn xoá user với căn cước công dân là
+  <b>{{ id }}</b>
+  không?
+  </div>
+  <p-footer>
+    <button pButton type="button" label="Huỷ" class="p-button-info w-fit" (click)="cancelDelete()"></button>
+    <button pButton type="button" label="Xoá" class="p-button-danger w-fit" (click)="deleteUser()"></button>
+  </p-footer>
+</p-dialog>
+
