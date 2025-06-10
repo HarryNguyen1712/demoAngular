@@ -47,6 +47,6 @@ export class AddUpdateComponent implements OnInit {
     } else {
       this.userService.addUser(this.form.value);
     }
-    this.router.navigate(['/inquiry']);
+    this.router.navigate(['/inquiry']).then(r => {});
   }
 }
